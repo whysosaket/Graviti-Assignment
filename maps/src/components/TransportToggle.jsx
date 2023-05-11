@@ -4,7 +4,7 @@ const TransportToggle = (props) => {
   return (
     <>
       <label
-        for="Toggle3"
+        htmlFor="Toggle3"
         className="inline-flex items-center p-2 rounded-md cursor-pointer font-semibold text-white"
       >
         <input

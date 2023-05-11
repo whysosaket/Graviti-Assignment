@@ -64,10 +64,10 @@ const Selector = () => {
           </div>
           <div className="md:w-1/2 w-full flex my-6">
             <div className="mx-auto my-auto flex md:flex-col">
-            <button onClick={handleClick} className="bg-[#1B31A8] font-semibold md:my-2 mx-2 p-3 text-white rounded-3xl">
+            <button onClick={handleClick} className="bg-[#1B31A8] font-semibold md:my-2 mx-1 p-3 text-white rounded-3xl">
               Calculate
             </button>
-            <button onClick={handleClear} className="bg-[#1B31A8] font-semibold md:my-2 p-3 text-white rounded-3xl">
+            <button onClick={handleClear} className="bg-[#1B31A8] font-semibold md:my-2 mx-1 p-3 text-white rounded-3xl">
               Clear
             </button>
             </div>

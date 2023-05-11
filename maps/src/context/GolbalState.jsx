@@ -79,8 +79,17 @@ const GlobalState = (props) => {
     if(results.status !== "OK") {
         toast.error(results.message);
     }
-       const distance = results.routes[0].legs[0].distance.text;
-       const duration = results.routes[0].legs[0].duration.text;
+      let distance = 0;
+      let duration = 0;
+      for(let i = 0; i < results.routes[0].legs.length; i++) {
+          distance += results.routes[0].legs[i].distance.value/1000;
+          duration += results.routes[0].legs[i].duration.value;
+      }
+
+      distance = distance.toFixed(2)+" kms";
+      let hours = Math.floor(duration/3600);
+      let minutes = Math.floor((duration%3600)/60);
+      duration = hours+" hours "+minutes+" mins";
    
        setDirectionsResponse(results);
        setDistance(distance);
