@@ -17,6 +17,9 @@ const Distance = (props) => {
             and <span className="font-semibold">{props.destination}</span> via the seleted
             route is <span className="font-semibold">{props.distance}</span>
           </p>
+          <div className="flex justify-end">
+            <p className="text-[#0079FF]"><span className="font-semibold text-black">ETA: </span>{props.eta?props.eta:"N/A"}</p>
+            </div>
         </div>
       </div>
     </>

@@ -13,7 +13,7 @@ const Selector = () => {
   const transportRef = useRef(null);
 
   const context = useContext(GlobalContext);
-  const { isLoaded, addWaypoint, waypoints, clear, calculateRoute, distance } = context;
+  const { isLoaded, addWaypoint, waypoints, clear, calculateRoute, distance, eta } = context;
 
   if(!isLoaded) {
     return <>Loading...</>
@@ -23,6 +23,7 @@ const Selector = () => {
     let origin = originRef.current.value;
     let destination = destinationRef.current.value;
     let trans = transportRef.current.checked ? "WALKING" : "DRIVING";
+    if(origin === "" || destination === "") return;
     calculateRoute(origin, destination, trans);
   }
 
@@ -41,7 +42,7 @@ const Selector = () => {
 
   return (
     <>
-      <div className="w-full md:px-20 lg:px-20 px-10">
+      <div className="w-full md:px-20 lg:px-30 px-10">
         <div className="md:flex justify-between">
           <div className="md:w-1/2 w-full">
             <InputField title="Origin" val={originRef} />
@@ -73,7 +74,7 @@ const Selector = () => {
           </div>
         </div>
         {distance && 
-      <Distance distance={distance} origin={originRef.current.value.split(',')[0]} destination={destinationRef.current.value.split(',')[0]}/>
+      <Distance eta={eta} distance={distance} origin={originRef.current.value.split(',')[0]} destination={destinationRef.current.value.split(',')[0]}/>
         }
       </div>
     </>

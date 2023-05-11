@@ -4,6 +4,8 @@ import Selector from "./components/Selector";
 import GlobalContext from "./context/globalContext.jsx";
 import MapView from "./components/MapView";
 import { useMediaQuery } from "react-responsive";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const context = useContext(GlobalContext);
@@ -19,6 +21,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer autoClose='2000' />
       <Navbar />
       <h1 className="text-center my-8 text-[#1b31a8] font-primary">
         Let's calculate <span className="font-bold">distance</span> from Google
@@ -30,7 +33,7 @@ function App() {
           <MapView />
         </div>
         }
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 my-auto">
           <Selector />
         </div>
         {!isMobile &&
