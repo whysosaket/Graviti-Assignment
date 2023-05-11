@@ -56,7 +56,7 @@ const Selector = () => {
             </>
             }
             <InputField title="Stop" val={stopRef}/>
-            <p onClick={handleAddStop} className="-my-3 flex justify-end text-sm"> <AiOutlinePlusCircle className="my-auto mr-2" /> {waypoints.length>0?'Add another stop':'Add stop'}</p>
+            <p onClick={handleAddStop} className="-my-3 flex justify-end text-sm cursor-pointer select-none"> <AiOutlinePlusCircle className="my-auto mr-2" /> {waypoints.length>0?'Add another stop':'Add stop'}</p>
             <InputField title="Destination" val={destinationRef}/>
             <div className="flex justify-center">
               <TransportToggle val={transportRef}/>

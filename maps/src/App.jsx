@@ -27,6 +27,7 @@ function App() {
         Let's calculate <span className="font-bold">distance</span> from Google
         maps
       </h1>
+      <div className="mb-10">
       <div className="md:flex">
       {isMobile &&
         <div className="md:w-1/2 mx-2">
@@ -41,6 +42,7 @@ function App() {
           <MapView />
         </div>
         }
+      </div>
       </div>
     </>
   );
