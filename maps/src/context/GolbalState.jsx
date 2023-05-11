@@ -32,9 +32,6 @@ const GlobalState = (props) => {
   };
 
   async function calculateRoute(origin, destination, trans) {
-    // clear previous route
-    clear();
-
     // check if origin and destination are valid locations
     if (origin === "" || destination === "") return;
 
