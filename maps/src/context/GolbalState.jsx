@@ -87,23 +87,42 @@ const GlobalState = (props) => {
       }
 
       distance = distance.toFixed(2)+" kms";
-      let hours = Math.floor(duration/3600);
-      let minutes = Math.floor((duration%3600)/60);
-      duration = hours+" hours "+minutes+" mins";
-   
+
+      let years = Math.floor(duration / (365 * 24 * 60 * 60));
+      duration %= 365 * 24 * 60 * 60;
+      let months = Math.floor(duration / (30 * 24 * 60 * 60));
+      duration %= 30 * 24 * 60 * 60;
+      let days = Math.floor(duration / (24 * 60 * 60));
+      duration %= 24 * 60 * 60;
+      let hours = Math.floor(duration / (60 * 60));
+      duration %= 60 * 60;
+      let minutes = Math.floor(duration / 60);
+      duration %= 60;
+
+      let eta = "";
+      if(years > 0) {
+          eta += years + " years ";
+      }
+      if(months > 0) {
+          eta += months + " months ";
+      }
+      if(days > 0) {
+          eta += days + " days ";
+      }
+      if(hours > 0) {
+          eta += hours + " hours ";
+      }
+      if(minutes > 0) {
+          eta += minutes + " minutes";
+      }
+       duration = eta;
        setDirectionsResponse(results);
        setDistance(distance);
        setEta(duration);
     } catch(err) {
-        if(err.message === "DIRECTIONS_ROUTE: NOT_FOUND: At least one of the origin, destination, or waypoints could not be geocoded."){
-            toast.error("At least one of the origin, destination, or waypoints could not be geocoded.");
-            return;
-        }
-        else if(err.message === "DIRECTIONS_ROUTE: NOT_FOUND: There was an issue performing a Directions request."){
-            toast.error("There was an issue performing a Directions request");
-            return;
-        }else if(err.message === "DIRECTIONS_ROUTE: ZERO_RESULTS: No route could be found between the origin and destination."){
-            toast.error("No route could be found between the origin and destination");
+        if(err.message) {
+            let message = err.message.split(":")[2].trim();
+            toast.error(message);
             return;
         }else {
             toast.error("Something went wrong. Please try again later.");
