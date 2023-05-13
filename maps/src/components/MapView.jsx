@@ -4,6 +4,7 @@ import {
   GoogleMap,
   Autocomplete,
   DirectionsRenderer,
+  Marker,
 } from "@react-google-maps/api";
 import GlobalContext from "../context/globalContext.jsx";
 
@@ -14,7 +15,9 @@ const MapView = () => {
   };
 
   const context = useContext(GlobalContext);
-  const { directionsResponse, isLoaded } = context;
+  const { directionsResponse, isLoaded, origin, destination, waypointsCoordinates } = context;
+
+  console.log(origin, destination);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -34,8 +37,13 @@ const MapView = () => {
           fullscreenControl: false,
         }}
       >
+        {origin && <Marker position={origin} icon='./OriginIcon.svg'/>}
+        {destination && <Marker position={destination} icon='./DestinationIcon.svg'/>}
+        {waypointsCoordinates.map((waypoint, index) => (
+          <Marker key={index} position={waypoint} icon='./StopIcon.svg'/>
+        ))}
         {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
+          <DirectionsRenderer directions={directionsResponse} options={{ suppressMarkers: true }}/>
         )}
       </GoogleMap>
       </div>

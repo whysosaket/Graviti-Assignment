@@ -8,6 +8,9 @@ const GlobalState = (props) => {
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [eta, setEta] = useState("");
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  const [waypointsCoordinates, setWaypointsCoordinates] = useState([]);
 
   // Connecting to Google Maps API
   const { isLoaded } = useJsApiLoader({
@@ -34,6 +37,7 @@ const GlobalState = (props) => {
   async function calculateRoute(origin, destination, trans) {
     // check if origin and destination are valid locations
     if (origin === "" || destination === "") return;
+
 
     // const isDestinationValid = await new Promise(resolve => {
     //     const geocoder = new google.maps.Geocoder();
@@ -79,6 +83,20 @@ const GlobalState = (props) => {
     if(results.status !== "OK") {
         toast.error(results.message);
     }
+
+      // get origin and destination coordinates
+      const originCoordinates = results.routes[0].legs[0].start_location;
+      const destinationCoordinates = results.routes[0].legs[results.routes[0].legs.length-1].end_location;
+      setOrigin(originCoordinates);
+      setDestination(destinationCoordinates);
+
+      // // get all the waypoints coordinates
+      const waypointsCoordinates = [];
+      for(let i = 0; i < results.routes[0].legs.length-1; i++) {
+          waypointsCoordinates.push(results.routes[0].legs[i].end_location);
+      }
+      setWaypointsCoordinates(waypointsCoordinates);
+
       let distance = 0;
       let duration = 0;
       for(let i = 0; i < results.routes[0].legs.length; i++) {
@@ -142,7 +160,10 @@ const GlobalState = (props) => {
         distance,
         directionsResponse,
         waypoints,
-        eta
+        eta,
+        origin,
+        destination,
+        waypointsCoordinates
       }}
     >
       {props.children}
