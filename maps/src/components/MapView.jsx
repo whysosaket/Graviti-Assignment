@@ -17,8 +17,6 @@ const MapView = () => {
   const context = useContext(GlobalContext);
   const { directionsResponse, isLoaded, origin, destination, waypointsCoordinates } = context;
 
-  console.log(origin, destination);
-
   if (!isLoaded) {
     return <div>Loading...</div>;
   }

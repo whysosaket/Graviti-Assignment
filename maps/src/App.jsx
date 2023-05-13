@@ -10,14 +10,14 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const context = useContext(GlobalContext);
   const { isLoaded } = context;
+  
+  const isMobile = useMediaQuery({
+    query: "(max-width: 767px)" // assuming 767px is the breakpoint for mobile view
+  });
 
   if(!isLoaded) {
     return <>Loading...</>
   }
-
-  const isMobile = useMediaQuery({
-    query: "(max-width: 767px)" // assuming 767px is the breakpoint for mobile view
-  });
 
   return (
     <>

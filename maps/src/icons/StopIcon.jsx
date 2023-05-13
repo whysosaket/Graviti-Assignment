@@ -17,7 +17,7 @@ const StopIcon = (props) => {
           r="4.5"
           fill="white"
           stroke="#2E2E2E"
-          stroke-width="5"
+          strokeWidth="5"
         />
       </svg>
     </>
