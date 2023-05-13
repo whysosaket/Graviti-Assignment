@@ -129,6 +129,7 @@ const GlobalState = (props) => {
             return;
         }
     }
+    
   }
 
   return (

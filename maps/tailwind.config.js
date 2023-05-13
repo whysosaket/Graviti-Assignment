@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['"Work Sans"'],
+        heading: ["Work Sans"],
+        primary: ["IBM Plex Sans"],
+        secondary: ["Rubik"],
     },
   },
   plugins: [],

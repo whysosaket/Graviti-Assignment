@@ -23,18 +23,18 @@ function App() {
     <>
       <ToastContainer autoClose='2000' />
       <Navbar />
-      <h1 className="text-center my-8 text-[#1b31a8] font-primary">
+      <h1 className="text-center my-8 text-[#1b31a8] font-heading tracking-wide">
         Let's calculate <span className="font-bold">distance</span> from Google
         maps
       </h1>
       <div className="mb-10">
       <div className="md:flex">
       {isMobile &&
-        <div className="md:w-1/2 mx-2">
+        <div className="md:w-1/2">
           <MapView />
         </div>
         }
-        <div className="md:w-1/2 my-auto">
+        <div className="md:w-1/2">
           <Selector />
         </div>
         {!isMobile &&
